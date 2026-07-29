@@ -84,7 +84,7 @@ const token = localStorage.getItem('access_token')
 
 const fetchTodos = async () => {
   try {
-    const res = await fetch('http://localhost:5000/api/todos', {
+    const res = await fetch('https://todo-backend-gfg0.onrender.com/api/todos', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     if (res.ok) tasks.value = await res.json()
@@ -98,7 +98,7 @@ onMounted(fetchTodos)
 const addTask = async () => {
   if (!newTask.value.trim()) return
   try {
-    const res = await fetch('http://localhost:5000/api/todos', {
+    const res = await fetch('https://todo-backend-gfg0.onrender.com/api/todos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ const addTask = async () => {
     })
     if (res.ok) {
       const created = await res.json()
-      tasks.value.unshift(created) // Adds to the top of the list
+      tasks.value.unshift(created)
       newTask.value = ''
     }
   } catch (err) {
@@ -118,7 +118,7 @@ const addTask = async () => {
 
 const toggleTask = async (task) => {
   try {
-    await fetch(`http://localhost:5000/api/todos/${task._id}`, {
+    await fetch(`https://todo-backend-gfg0.onrender.com/api/todos/${task._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ const toggleTask = async (task) => {
 
 const removeTask = async (id) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/todos/${id}`, {
+    const res = await fetch(`https://todo-backend-gfg0.onrender.com/api/todos/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -148,7 +148,6 @@ const remainingTodos = computed(() => {
   return tasks.value.filter(task => !task.completed).length
 })
 
-// Logout functionality
 const logout = () => {
   localStorage.removeItem('access_token')
   router.push('/login')

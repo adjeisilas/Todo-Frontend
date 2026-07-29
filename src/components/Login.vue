@@ -27,7 +27,7 @@
       <p class="mt-6 text-[0.9rem] text-gray-500">Don't have an account? <router-link to="/signup" class="text-gray-900 font-bold hover:underline">Sign up Here</router-link></p>
     </div>
     
-    <!-- Right Side: Image Placeholder -->
+   
     <div class="hidden lg:block flex-1 bg-gray-100 relative">
       <img 
         src="/images/Login.jpg" 
@@ -48,7 +48,7 @@ const errorMessage = ref('')
 
 const handleLogin = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch('https://todo-backend-gfg0.onrender.com/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: form.email, password: form.password })
